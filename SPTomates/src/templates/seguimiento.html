@@ -1,0 +1,296 @@
+{% extends 'indexSesion.html' %}
+{% block contenido %}
+<section class="banner_main">
+    <!-- Button trigger modal -->
+    <br>
+    <div class="grid text-center" style="--bs-columns: 3;">
+        <div></div>
+        <div>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Ver Resultados
+            </button>
+        </div>
+        
+      </div>
+      <br>
+
+
+<div class="container text-center">
+  <div class="row">
+    <div class="col">
+     
+    </div>
+    <div class="col-10">
+        <div class="columns">
+            {% if trat %}
+            <div class="column">
+                <h3 class="is-size-3">Tratamientos</h3>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Modo de Acción</th>
+                                <th scope="col">Dosis</th>
+                                <th scope="col">Cantidad de Días</th>
+                                <th scope="col">Seleccionar Tratamiento</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            {% for trats in trat %}
+                            <tr>
+                                <td scope="row">{{trats[1]}}</td>
+                                {% if trats[2]=="S" %}
+                                    <td scope="row">Sistemático</td>
+                                {% elif trats[2]=="P" %}
+                                    <td scope="row">Preventivo</td>
+                                {% elif trats[2]=="Q" %}
+                                    <td scope="row">Químico</td>
+                                {% elif trats[2]=="B" %}
+                                    <td scope="row">Biológico</td>
+                                {% elif trats[2]=="C" %}
+                                    <td scope="row">Curativo</td>
+                                {% elif trats[2]=="N" %}
+                                    <td scope="row">Ninguno</td>
+                                {% endif %}
+                                <td scope="row">{{trats[3]}}</td>
+                                <td scope="row">{{trats[4]}}</td>
+                                <td>
+                                    <form action="/regisSegui" method="POST">
+                                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                        <input type="hidden" name="id" value="{{trats[0]}}">
+                                        <input type="hidden" name="id_hoja" value="{{id_hoja}}">
+                                        <input type="hidden" name="diagnostico" value="{{pred_output}}">
+                                        <input type="hidden" name="porcen_fia" value="{{porc}}">
+                                        <input type="hidden" name="imagen_hoja" value="{{user_image}}">
+                                        <input type="submit" value="Seleccionar">
+                                    </form>
+                                </td>
+                                <td>
+                                    <!--<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                                        Ver Más
+                                    </button>-->
+                                    
+                                </td>
+                                
+                                
+
+                                
+                            </tr>
+                            {% endfor %}
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+      
+    </div>
+  </div>
+</div>
+<!--
+    <div class="col-md-12">
+        <div class="columns">
+            {% if trat %}
+            <div class="column">
+                <h3 class="is-size-3">Tratamientos</h3>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Modo de Acción</th>
+                                <th scope="col">Dosis</th>
+                                <th scope="col">Cantidad de Días</th>
+                                <th scope="col">Nivel de Enfermedad</th>
+                                <th scope="col">Seleccionar Tratamiento</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            {% for trats in trat %}
+                            <tr>
+                                <td scope="row">{{trats[1]}}</td>
+                                {% if trats[2]=="S" %}
+                                    <td scope="row">Sistemático</td>
+                                {% elif trats[2]=="P" %}
+                                    <td scope="row">Preventivo</td>
+                                {% elif trats[2]=="C" %}
+                                    <td scope="row">Curativo</td>
+                                {% endif %}
+                                <td scope="row">{{trats[3]}}</td>
+                                <td scope="row">{{trats[4]}}</td>
+                                <td scope="row">{{trats[6]}}</td>
+                                <td>
+                                    <form action="/regisSegui" method="POST">
+                                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                        <input type="hidden" name="id" value="{{trats[0]}}">
+                                        <input type="hidden" name="id_hoja" value="{{id_hoja}}">
+                                        <input type="hidden" name="diagnostico" value="{{pred_output}}">
+                                        <input type="hidden" name="nivel" value="{{nivel}}">
+                                        <input type="hidden" name="porcen_enfer" value="{{porcen_enfer}}">
+                                        <input type="hidden" name="porcen_fia" value="{{porc}}">
+                                        <input type="hidden" name="imagen_hoja" value="{{user_image}}">
+                                        <input type="hidden" name="imagen_umbral" value="{{ft_umbral}}">
+                                        <input type="submit" value="Seleccionar">
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {% else %}
+                        <form action="/regisSegui" method="POST">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                            <input type="hidden" name="id_hoja" value="{{id_hoja}}">
+                            <input type="hidden" name="diagnostico" value="{{pred_output}}">
+                            <input type="hidden" name="nivel" value="{{nivel}}">
+                            <input type="hidden" name="porcen_enfer" value="{{porcen_enfer}}">
+                            <input type="hidden" name="porcen_fia" value="{{porc}}">
+                            <input type="hidden" name="imagen_hoja" value="{{user_image}}">
+                            <input type="hidden" name="imagen_umbral" value="{{ft_umbral}}">
+                            <input type="submit" value="Finalizar">
+                        </form>
+            {% endif %}
+        </div>
+    </div>
+-->
+</section>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Resultados del diagnóstico</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="container text-center">
+                <div class="row justify-content-between">
+                    <div class="col">
+                        <div class="card">
+                            <img src="./static/images/{{ foto_base }}" alt="User Image" width="auto">
+                            <div class="card-body">
+                            <p class="card-text">Foto Base</p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="col">
+                        <div class="card">
+                           
+                                <img src="./static/upload/fotos/{{ foto }}" alt="User Image" width="auto">
+                            
+                            <div class="card-body">
+                            <p class="card-text">Foto Ingresada</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--
+                    <div class="col-4">
+                        <div class="card" style="width: 18rem;">
+                           
+                                <img src="./static/upload/umbrales/{{ umbral }}" alt="User Image" width="auto">
+                           
+                            <div class="card-body">
+                            <p class="card-text">Umbral</p>
+                            </div>
+                        </div>
+                    </div>-->
+                </div>
+            </div>
+            <!--
+            <div class="row">
+                
+                <div class="col-sm">
+                    <span class="border border-primary">
+                        <img src="./static/images/{{ foto_base }}" alt="User Image" width="200px" height="200px">
+                        
+                    </span>
+                </div>
+                <div class="col-sm">
+                    <span class="border border-primary">
+                        <img src="./static/upload/fotos/{{ foto }}" alt="User Image" width="200px" height="200px">
+                    </span>
+                </div>
+                <div class="col-sm">
+                    <span class="border border-primary">
+                        <img src="./static/upload/umbrales/{{ umbral }}" alt="User Image" width="200px" height="200px">
+                    </span>
+                </div>
+            </div> -->
+<br>
+            <div class="row">
+                <!--
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div>
+                        <h1>Nombre de la enfermedad</h1>
+                        <h1 style="padding: 15px; background-color: rgb(15, 15, 15); color: white;"
+                            class="text-center mb-5 content-h1 rounded">
+                            {{pred_output}} </h1>
+                    </div>
+                    <div>
+                        <h1>Porcentaje de Fiabilidad en el resultado</h1>
+                        <h1 style="padding: 15px; background-color: rgb(15, 15, 15); color: white;"
+                            class="text-center mb-5 content-h1 rounded">
+                            {{porc}} %</h1>
+                    </div>
+                    <div>
+                        <h1>Cantidad en px de la enfermedad en la foto</h1>
+                        <h1 style="padding: 15px; background-color: rgb(15, 15, 15); color: white;"
+                            class="text-center mb-5 content-h1 rounded">
+                            {{enfermedad}} </h1>
+                    </div>
+                    <div>
+                        <h1>Porcentaje de la Enfermedad en la foto</h1>
+                        <h1 style="padding: 15px; background-color: rgb(15, 15, 15); color: white;"
+                            class="text-center mb-5 content-h1 rounded">
+                            {{porcen_enfer}} %</h1>
+                    </div>
+                    <div>
+                        <h1>Nivel de la enfermedad</h1>
+                        <h1 style="padding: 15px; background-color: rgb(15, 15, 15); color: white;"
+                            class="text-center mb-5 content-h1 rounded">
+                            {{nivel}} </h1>
+                    </div>
+    
+                </div> -->
+               
+                    <div class="container text-center">
+    
+                        <div class="row justify-content-evenly">
+                            <div class="col-11">
+                                <div class="form-floating mb-3">
+                                    <input value="{{pred_output}}" readonly type="text" class="form-control">
+                                    <label for="floatingInput">Nombre de la enfermedad</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input value="{{porc}}" type="text"  readonly class="form-control" id="floatingInput" placeholder="name@example.com">
+                                    <label for="floatingInput">Porcentaje de Fiabilidad en el resultado</label>
+                                </div>
+
+                                
+                              
+                                
+                            </div>
+                            
+                          </div>
+                        </div>
+                    
+            </div>
+        </div>
+       
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

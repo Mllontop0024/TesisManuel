@@ -1,0 +1,61 @@
+{% extends 'indexAdmin.html' %}
+{% block contenido %}
+<div class="container text-center">
+    <br>
+    <form action="/diagnosticosUsuarioDetallado" method="post">
+        <div class="row justify-content-evenly" style="width: 100%;">
+            
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">          
+                <div class="col-5">
+                    <div class="form-floating mb-3">
+                        <select name="usuario" class="form-select" id="">
+                            {% for dats in datos %}
+                            <option value="{{dats[0]}}">{{dats[1]}}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="floatingInput">Nombre de Usuario</label>
+                    </div>
+                    
+                </div>
+                
+                <div class="row justify-content-center" style="width: 100%;">
+                    <div class="form-floating">
+                        <button type="submit" class="btn btn-primary">Filtrar</button>
+                    </div>
+                </div>
+            
+            <canvas id="myChart" width="700" height="200"></canvas>
+        </div>
+    </form>
+      
+      
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      
+</div>
+
+  <script>
+    var etiquetas = {{ labels | tojson }};
+    var valores = {{ values | tojson }};
+    const ctx = document.getElementById('myChart');
+  
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: etiquetas,
+        datasets: [{
+          label: 'Cantidad de Diagnosticos nuevos',
+          data: valores,
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+{% endblock %}

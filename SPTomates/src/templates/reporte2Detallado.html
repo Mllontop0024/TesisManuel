@@ -1,0 +1,40 @@
+{% extends 'indexAdmin.html' %}
+{% block contenido %}
+<div class="container text-center">
+    <br>
+    <div class="row justify-content-evenly" style="width: 100%;">
+        <canvas id="myChart" width="800" height="300"></canvas>
+    </div>
+    <div class="form-floating mb-3">
+        <a href="{{ request.referrer }}" class="btn btn-primary">Volver</a>
+    </div>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      
+</div>
+
+  <script>
+    var etiquetas = {{ labels | tojson }};
+    var valores = {{ values | tojson }};
+    const ctx = document.getElementById('myChart');
+  
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: etiquetas,
+        datasets: [{
+          label: 'Cantidad de Diagnosticos nuevos',
+          data: valores,
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+{% endblock %}

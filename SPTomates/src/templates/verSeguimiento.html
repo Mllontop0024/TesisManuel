@@ -1,0 +1,68 @@
+{% extends 'indexSesion.html' %}
+{% block contenido %}
+
+<div class="container text-center">
+    <div class="row">
+      <div class="col">
+       
+      </div>
+
+      <div class="col-md-12">
+        <div class="columns">
+            <div class="column">
+                <h3 class="is-size-3">Tratamientos</h3>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID Seguimiento</th>
+                                <th scope="col">ID hoja</th>
+                                <th scope="col">Fecha Seguimiento</th>
+                                <th scope="col">Estado</th>
+                                <th scope="col">Detalle</th>
+                            </tr>
+                            {% for hojas_s in hojas_seguimiento %}
+                        <tr>
+                            <td scope="row">{{hojas_s[0]}}</td>
+                            <td scope="row">{{hojas_s[1]}}</td>
+                            <td scope="row">{{hojas_s[2]}}</td>
+                            {% if hojas_s[3]=="S" %}
+                                        <td scope="row">En Seguimiento</td>
+                            {% elif hojas_s[3]=="T" %}
+                                        <td scope="row">Terminado</td>
+                            {% endif %}
+
+                            <td>
+                              
+                                <div class="grid text-center" style="--bs-columns: 3;">
+                                    <div></div>
+                                    <div>
+                                        <!--<a data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary" href="/verResultado/{{hojas_s[0]}}">Ver Resultados</a>-->
+                                        <a class="btn btn-primary" href="/verResultado/{{hojas_s[0]}}">Ver Detalles</a>
+                                    </div>
+                                    
+                                </div>
+                            </td>
+                        </tr>
+                        
+
+                        {% endfor %}
+                        </thead>
+                        
+                    </table>
+                </div>
+            </div>
+        </div>
+      </div>
+
+      <div class="form-floating mb-3">
+        <a href="/prueba2/{{current_user.id}}" class="btn btn-primary">Volver</a>
+      </div>
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}

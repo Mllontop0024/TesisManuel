@@ -1,0 +1,86 @@
+{% extends 'indexSesion.html' %}
+{% block contenido %}
+    {% with messages=get_flashed_messages() %}
+
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-primary alert-dismissible" role="alert">
+          <strong>{{message}}</strong>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+
+        {% endif%}
+
+    {% endwith %}
+
+    <div class="container text-center mb-3">
+        <div class="row">
+        
+            <div class="col-md-4 mb-3">
+                <div class="card ">
+                    <img src="data:image/jpeg;base64,{{imagen}}"/>
+                        
+                    
+                    <div class="card-body">
+                    <p class="card-text">Foto Ingresada</p>
+                    </div>
+                </div>
+            </div>
+        <div class="col-md-4 mb-3 container text-center">
+            
+            <div class="form-floating mb-3">
+                <input value="{{datos[2]}}" readonly type="text" class="form-control">
+                <label for="floatingInput">Diagnóstico</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input value="{{datos[3]}}" type="text"  readonly class="form-control" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">Porcentaje de Fiabilidad en el resultado</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input value="{{datos[4]}}" type="text"  readonly class="form-control" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">Fecha de Inicio de Tratamiento</label>
+                
+            </div>
+            <div class="form-floating mb-3">
+                <input value="{{datos[5]}}" type="text"  readonly class="form-control" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">Fecha de Fin de Tratamiento</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input value="{{datos[6]}}" type="text"  readonly class="form-control" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">Nombre del Control o tratamiento</label>
+            </div>
+            
+        
+        </div>
+
+
+        <div class="col-md-4 mb-3 container text-center">
+            <div class="form-floating mb-3">
+                <input value="{{datos[7]}}" type="text"  readonly class="form-control" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">Modo de Acción</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input value="{{datos[8]}}" type="text"  readonly class="form-control" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">Dosis</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input value="{{datos[9]}}" type="text"  readonly class="form-control" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">Cantidad de Días del control o tratamiento</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input value="{{datos[11]}}" type="text"  readonly class="form-control" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">Estado del Tratamiento en este diagnóstico</label>
+            </div>
+            
+        </div>
+
+        </div>
+        <div class="form-floating mb-3">
+            <a href="{{ request.referrer }}" class="btn btn-primary">Volver</a>
+        </div>
+    </div>
+
+
+
+{% endblock %}

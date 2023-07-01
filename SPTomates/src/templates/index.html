@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SP Tomates</title>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>Sistema Predictivo Tomates</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- bootstrap css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
+    <!-- style css -->
+    <link rel="stylesheet" href="{{url_for('static',filename = 'css/style.css')}}">
+   
+    
+    
+</head>
+<body class="main-layout">
+    <!-- loader  -->
+    <div class="loader_bg">
+       <div class="loader"><img src="{{url_for('static',filename = 'images/loading.gif')}}" alt="#" /></div>
+    </div>
+    <!-- end loader -->
+    <!-- header -->
+    <header>
+      <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+         <div class="container-fluid">
+           <a class="navbar-brand text-white" href="/">SP TOMATES</a>
+           <button class="navbar-toggler collapsed text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+             <span class="navbar-toggler-icon text-white"></span>
+           </button>
+           <div class="navbar-collapse collapse" id="navbarColor01">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          
+            </ul> 
+            <form class="d-flex" role="search">
+               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                 <li class="nav-item">
+                  <a class="nav-link active text-white" href="" data-bs-toggle="modal" data-bs-target="#exampleModalToggle">Iniciar Sesión | Registrarse</a>
+                 
+                  </li> 
+                 
+                 <!--<li class="nav-item">
+                  <a class="nav-link active text-white" aria-current="page" href="/login">Iniciar Sesión | Registrarse</a>
+                  </li>-->
+                  <li class="nav-item">
+                  <a class="nav-link text-white " href="/">Inicio</a>
+                  </li>
+                  <li class="nav-item">
+                  <a class="nav-link text-white" href="/sabermas">Saber Más</a>
+                  </li>
+               </ul>
+            </form>
+           </div>
+         </div>
+       </nav>
+       
+       
+      
+          <!--
+          <div class="header_bottom">
+             <div class="container">
+                <div class="row">
+                   <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                     
+                   </div>
+                   <div class="col-md-4">
+                      <nav class="navigation navbar navbar-expand-md navbar-dark ">
+                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+                         <span class="navbar-toggler-icon"></span>
+                         </button>
+                         <div class="collapse navbar-collapse" id="navbarsExample04">
+                            <ul class="navbar-nav mr-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/login">Login</a>
+                                 </li>
+                               <li class="nav-item">
+                                  <a class="nav-link" href="/">Inicio</a>
+                               </li>
+                               <li class="nav-item">
+                                  <a class="nav-link" href="contact.html">Tomate</a>
+                               </li>
+                            </ul>
+                         </div>
+                      </nav>
+                   </div>
+                </div>
+             </div>
+          </div> 
+         -->
+    </header>
+    {%block contenido %} 
+    
+   
+    <section class="banner_main">
+        <div class="container">
+           <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+               <span class="blodark">SISTEMA PREDICTIVO PARA LA DETECCIÓN Y CONTROL DE LA ARAÑA ROJA DEL TOMATE EN LAMBAYEQUE</span>
+            </div>
+            <div class="mvqs">
+               <div class="container">
+                 <div class="row">
+                   <div class="col-md-5">
+                     <div class="card-m shadow">
+                     <h1 >Descripción de lo que hacemos</h1>
+                     <p >Mediante el uso de una de las técnicas de Inteligencia Artificial, llamada Redes Neuronales Convolucionales para que através de imágenes de tomate se detecte la plaga de la araña roja y así poder brindarle un control adecuado</p>
+                     <br>
+                     <a class="read_more" href="sabermas">Saber Más</a>
+                     </div>
+                   </div>
+                   <div class="col-sm-7">
+  
+                     <div id="carouselExampleSlidesOnly" class="fotosTrabajo carousel slide" data-bs-ride="carousel">
+                       <div class="carousel-inner">
+                         <div class="carousel-item active">
+                           <img src="{{url_for('static',filename = 'images/fondo4.jpg')}}" class="d-block" width="100%" height="auto" alt="...">
+                         </div>
+                         <div class="carousel-item">
+                           <img src="{{url_for('static',filename = 'images/fondo5.jpg')}}" class="d-block"  width="100%" height="auto"  alt="...">
+                         </div>
+                         <div class="carousel-item">
+                           <img src="{{url_for('static',filename = 'images/fondo3.jpg')}}" class="d-block"  width="100%" height="auto"  alt="...">
+                         </div>
+                       </div>
+                     </div>
+                   </div>
+                   
+                 </div>
+               </div>
+            </div>
+              <!--<div class="col-md-6">
+                 <div class="text-bg">
+                    <h5> <span class="blodark">Descripción de lo que hacemos</span></h5>
+                    <p style="text-align: justify;">Mediante el uso de una de las técnicas de Inteligencia Artificial, llamada Redes Neuronales Convolucionales para que através de imágenes de hojas de tomate se detecte la enfermedad que pueda tener</p>
+                    <a class="read_more" href="#">Saber Más</a>
+                 </div>
+              </div>-->
+
+              
+            <!--
+              <div class="col-md-6">
+                 <div class="ban_img">
+                    <figure><img src="{{url_for('static',filename = 'images/fondo.jpeg')}}" alt="#"/></figure>
+                 </div>
+              </div>
+              -->
+           </div>
+        </div>
+     </section> 
+     {% endblock %}
+    <!-- end header inner -->
+    <!-- end header -->
+    <!-- banner -->
+    
+
+    <!--  footer -->
+    <footer>
+       <div class="container">
+          <div class="copyright">
+             <div class="container">
+                <div class="row">
+                   <div class="col-md-12">
+                      <p>Manuel Alejandro Llontop Soplapuco| @2023 Todos los derechos reservados</p>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </footer>
+    
+    <!-- end footer -->
+    <!-- Javascript files-->
+    <script src="{{url_for('static',filename = 'js/jquery.min.js')}}"></script>
+    
+    <script src="{{url_for('static',filename = 'js/custom.js')}}"></script>
+
+
+ </body>
+
+<!-- <body background="{{url_for('static',filename = 'images/fondo.jpeg')}}">
+        <h1 style="text-align:center;font-size:4rem; color: white;">Predicción de enfermedades del tomate y tratamiento</h1>
+  <section>
+          
+       
+              <form action="/predict" method="post" enctype="multipart/form-data" onsubmit="showloading()">
+  
+                  <input type="file" name="image" class="upload">
+                  <br>
+                  <br>
+                  <input type="submit" value="Predecir">
+  
+              </form>
+          </div>
+   </section>
+</body> -->
+</html>
+
+<!--<html>
+<head>
+ <style>
+
+body  {
+  background-image: {{url_for('static',filename = 'images/fondo.jpeg')}};;
+  background-repeat: no-repeat;
+  background-size: auto;
+}
+* {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+
+
+        }
+
+     
+
+        form {
+            display: flex;
+            height: 85vh;
+            justify-content: center;
+            align-items: center;
+            margin-top: -150px;
+            width: 60%;
+            text-align: center;
+			margin-left:300px;
+            
+        }
+
+
+        .details h2 {
+            
+            position: relative;
+            top: 100px;
+            margin: auto;
+            color: rgb(18, 231, 231);
+            font-size: 3rem;
+        }
+
+        label:hover {
+            transform: scale(1.03);
+        }
+
+        .details h2 {
+            /* margin-bottom: 300px; */
+            position: relative;
+            top: 100px;
+            margin: auto;
+            color: rgb(18, 231, 231);
+            font-size: 3rem;
+
+        }
+
+      
+
+
+        .details h1 {
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            background-color: rgb(8, 8, 8);
+        }
+
+
+        .upload {
+
+            font-size: 20px;
+            background-color: rgb(255, 252, 252);
+            border-radius: 20px;
+            outline: none;
+            width: 500px;
+            color: rgb(0, 0, 0);
+            border: 3px solid rgb(45, 47, 49);
+
+
+
+        }
+
+        ::-webkit-file-upload-button {
+            color: rgb(255, 252, 252);
+            padding: 20px;
+            border: 2px solid rgb(201, 6, 6);
+            background-color: rgb(201, 6, 6);
+            border-radius: 15px;
+
+        }
+
+        ::-webkit-file-upload-button:hover {
+            border-radius: 20px;
+            border: 2px solid rgb(177, 174, 174);
+
+
+        }
+
+
+
+        input[type="submit"] {
+            position: absolute;
+            margin-top: 200px;
+            padding: 15px 35px;
+            background-color: rgb(201, 6, 6);
+            border-radius: 15px;
+            color: white;
+            font-size: 1.5rem;
+            border: 4px solid black;
+        }
+</style> -->
+
+
+<div class="modal fade" id="exampleModalToggle" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog modal-dialog-centered">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h1 class="modal-title fs-5" id="exampleModalLabel">Iniciar Sesión</h1>
+         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+       </div>
+       <form class="form2" method="POST" action="/logueo">
+         <div class="modal-body">
+            <div class="row">
+                     <div class="container text-center">
+                        {% with messages=get_flashed_messages() %}
+      
+                        {% if messages %}
+                        {% for message in messages %}
+                        <div class="alert alert-primary alert-dismissible" role="alert">
+                        <strong>{{message}}</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        {% endfor %}
+               
+                        {% endif%}
+               
+                        {% endwith %}
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                        <div class="row justify-content-evenly">
+                              <div class="col-11">
+                                 <div class="form-floating mb-3">
+                                    <input type="text" name="correoL" class="form-control" placeholder="name@example.com" required>
+                                    <label for="floatingInput">Correo</label>
+                                 </div>
+                                 <div class="form-floating mb-3">
+                                    <input type="password" name="contrasenaL" class="form-control" placeholder="name@example.com" required>
+                                    <label for="floatingInput">Contraseña</label>
+                                 </div>
+
+                                 <div class="form-floating mb-3">
+                                    <select name="tipoU" class="form-select">
+                                       <option value="1">Agricultor o Personal de campo</option>
+                                       <option value="2">Administrador</option>
+                                    </select>
+                                    <label for="floatingInput">Tipo de Usuario</label>
+                                 </div>
+
+                                 <span >¿No está registrado? <a href="" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Registrarse</a> </span>
+                                 
+                              </div> 
+                           </div>
+                        </div>
+                     
+            </div>
+         </div>
+      
+         <div class="modal-footer">  
+            <button type="submit" class="btn btn-primary" id="btnIngresar">Ingresar</button>
+         </div>
+       </form>
+     </div>
+   </div>
+ </div>
+
+
+
+ <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+   <div class="modal-dialog modal-dialog-centered">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Registrar</h1>
+         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+       </div>
+       <form class="form2" action="/regisUsu" method="POST"  onsubmit="return validarContrasena()">
+         <div class="modal-body">
+            <div class="row">
+               <div class="container text-center">
+                  {% with messages=get_flashed_messages() %}
+
+                  {% if messages %}
+                  {% for message in messages %}
+                  <div class="alert alert-primary alert-dismissible" role="alert">
+                  <strong>{{message}}</strong>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                  {% endfor %}
+
+                  {% endif%}
+         
+                  {% endwith %}
+                  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                  
+                  <div class="row justify-content-evenly">
+                        <div class="col-11">
+                           <div class="form-floating mb-3">
+                              <input type="email" name="correo" class="form-control" placeholder="name@example.com" required>
+                              <label for="floatingInput">Correo</label>
+                           </div>
+                           <div class="form-floating mb-3">
+                              <input type="text" name="nombre" class="form-control" placeholder="name@example.com" required>
+                              <label for="floatingInput">Nombres</label>
+                           </div>
+                           <div class="form-floating mb-3">
+                              <input type="text" name="apellidos" class="form-control" placeholder="name@example.com" required>
+                              <label for="floatingInput">Apellidos</label>
+                           </div>
+                           <div class="form-floating mb-3">
+                              <input type="password" id="contrasena" name="contrasena" class="form-control" minlength="8" placeholder="name@example.com" required>
+                              <label for="floatingInput">Contraseña</label>
+                           </div>
+                           <div class="form-floating mb-3">
+                              <input type="password" name="confirmarContrasena" class="form-control" minlength="8" placeholder="name@example.com" required>
+                              <label for="floatingInput">Confirmar Contraseña</label>
+                           </div>
+                           
+                           <div class="form-floating mb-3">
+                              <input type="text" name="nombre_campo" class="form-control" placeholder="name@example.com" required>
+                              <label for="floatingInput">Nombre de campo de Cultivo</label>
+                           </div>
+
+                        <span>¿Ya está registrado? <a href="" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Iniciar Sesión</a> </span>
+                           
+                        </div> 
+                     </div>
+                  </div>
+               
+      </div>
+            
+         </div>
+         <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Registrar</button>
+         </div>
+      </form>
+     </div>
+   </div>
+ </div>
+ 
+
+ <script>
+   function validarContrasena() {
+       var contrasena = document.getElementById('contrasena').value;
+       var pattern = /^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[\W]).{8,}$/; // Patrón de validación
+
+       if (pattern.test(contrasena)) {
+           return true; // Contraseña válida
+       } else {
+           alert("La contraseña debe incluir al menos un número, una letra y un signo. Debe tener al menos 8 caracteres.");
+           return false; // Contraseña no válida
+       }
+   }
+</script>

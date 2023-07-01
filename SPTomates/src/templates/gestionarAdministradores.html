@@ -1,0 +1,175 @@
+{% extends 'indexAdmin.html' %}
+{% block contenido %}
+<section class="banner_main">
+    <!-- Button trigger modal -->
+    <br>
+    <div class="grid text-center" style="--bs-columns: 3;">
+        <div></div>
+        <div>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Registrar administradores
+            </button>
+        </div>
+      </div>
+      <br>
+
+<div class="container text-center">
+  <div class="row">
+    <div class="col">
+     
+    </div>
+    <div class="col-10">
+        <div class="columns">
+            {% if datos %}
+            <div class="column">
+                <h3 class="is-size-3">Usuarios Administradores</h3>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Id Usuario</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Apellidos</th>
+                                <th scope="col">Correo</th>
+                                <th scope="col">Eliminar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            {% for dats in datos %}
+                            <tr>
+                                <td scope="row">{{dats[0]}}</td>
+                                <td scope="row">{{dats[1]}}</td>
+                                <td scope="row">{{dats[2]}}</td>
+                                <td scope="row">{{dats[3]}}</td>
+                                <td scope="row">
+                                        <a class="botones" href="/eliminarUsuarioA/{{dats[0]}}">Eliminar</a>
+                                </td>
+                                
+                            </tr>
+                            {% endfor %}
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {% else %}
+            <div class="column">
+                <h3 class="is-size-3">Usuarios Administradores</h3>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Id Usuario</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Apellidos</th>
+                                <th scope="col">Correo</th>
+                                <th scope="col">Eliminar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            
+                            <tr>
+                                
+                                
+                            </tr>
+                            
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="col">
+      
+    </div>
+  </div>
+</div>
+
+</section>
+
+
+<div class="modal fade" id="exampleModal" aria-hidden="true" aria-labelledby="exampleModalLabel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Registrar Administrador</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form class="form2" action="/regisUsuA" method="POST"  onsubmit="return validarContrasena()">
+          <div class="modal-body">
+             <div class="row">
+                <div class="container text-center">
+                   {% with messages=get_flashed_messages() %}
+ 
+                   {% if messages %}
+                   {% for message in messages %}
+                   <div class="alert alert-primary alert-dismissible" role="alert">
+                   <strong>{{message}}</strong>
+                   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                   </div>
+                   {% endfor %}
+ 
+                   {% endif%}
+          
+                   {% endwith %}
+                   <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                   
+                   <div class="row justify-content-evenly">
+                         <div class="col-11">
+                            <div class="form-floating mb-3">
+                               <input type="email" name="correo" class="form-control" placeholder="name@example.com" required>
+                               <label for="floatingInput">Correo</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                               <input type="text" name="nombre" class="form-control" placeholder="name@example.com" required>
+                               <label for="floatingInput">Nombres</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                               <input type="text" name="apellidos" class="form-control" placeholder="name@example.com" required>
+                               <label for="floatingInput">Apellidos</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                               <input type="password" id="contrasena" name="contrasena" class="form-control" minlength="8" placeholder="name@example.com" required>
+                               <label for="floatingInput">Contraseña</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                               <input type="password" name="confirmarContrasena" class="form-control" minlength="8" placeholder="name@example.com" required>
+                               <label for="floatingInput">Confirmar Contraseña</label>
+                            </div>
+                            
+                         </div> 
+                      </div>
+                   </div>
+                
+       </div>
+             
+          </div>
+          <div class="modal-footer">
+             <button type="submit" class="btn btn-primary">Registrar</button>
+          </div>
+       </form>
+      </div>
+    </div>
+  </div>
+  
+ 
+  <script>
+    function validarContrasena() {
+        var contrasena = document.getElementById('contrasena').value;
+        var pattern = /^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[\W]).{8,}$/; // Patrón de validación
+ 
+        if (pattern.test(contrasena)) {
+            return true; // Contraseña válida
+        } else {
+            alert("La contraseña debe incluir al menos un número, una letra y un signo. Debe tener al menos 8 caracteres.");
+            return false; // Contraseña no válida
+        }
+    }
+ </script>
+
+
+{% endblock %}

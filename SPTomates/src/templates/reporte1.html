@@ -1,0 +1,72 @@
+{% extends 'indexAdmin.html' %}
+{% block contenido %}
+<div class="container text-center">
+    <br>
+    <form action="/diagnosticosTiempoDetallado" method="post">
+        <div class="row justify-content-evenly" style="width: 100%;">
+            
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">          
+                <div class="col-5">
+                    <div class="form-floating mb-3">
+                        <select name="mes" class="form-select" id="">
+                            {% for dats in datosCombo %}
+                            <option value="{{dats[1]}}">{{dats[1]}}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="floatingInput">Meses</label>
+                    </div>
+                    
+                </div>
+                <div class="col-5">
+                    
+                    <div class="form-floating mb-3">
+                        <select name="anio" class="form-select" id="">
+                            {% for dats2 in datosCombo2 %}
+                            <option value="{{dats2[0]}}">{{dats2[0]}}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="floatingInput">Año</label>
+                    </div>
+                    
+                </div>
+                <div class="row justify-content-center" style="width: 100%;">
+                    <div class="form-floating">
+                        <button type="submit" class="btn btn-primary">Filtrar</button>
+                    </div>
+                </div>
+            
+            <canvas id="myChart" width="800" height="300"></canvas>
+        </div>
+    </form>
+      
+      
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      
+</div>
+
+  <script>
+    var etiquetas = {{ labels | tojson }};
+    var valores = {{ values | tojson }};
+    const ctx = document.getElementById('myChart');
+  
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: etiquetas,
+        datasets: [{
+          label: 'Cantidad de Diagnosticos nuevos',
+          data: valores,
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+{% endblock %}
