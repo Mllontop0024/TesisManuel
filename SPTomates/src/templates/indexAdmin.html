@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SE Tomates</title>
+    <title>SP Tomates</title>
     <!-- basic -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>Sistema Experto Tomates</title>
+    <title>Sistema Predictivo Tomates</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -127,6 +127,7 @@
                         {{current_user.cor}}
                      </a>
                      <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/editarUsuario3">Editar usuario</a></li>
                        <li><a class="dropdown-item" href="{{ url_for('logout') }}">Cerrar Sesión</a></li>
                      </ul>
                    </li>
@@ -143,6 +144,19 @@
     <section class="banner_main">
       <div class="container">
          <div class="row">
+            {% with messages=get_flashed_messages() %}
+
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-primary alert-dismissible" role="alert">
+              <strong>{{message}}</strong>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+    
+            {% endif%}
+    
+        {% endwith %}
           <div class="col-md-1"></div>
           <div class="col-md-10">
              <span class="blodark">SISTEMA PREDICTIVO PARA LA DETECCIÓN Y CONTROL DE LA ARAÑA ROJA DEL TOMATE EN LAMBAYEQUE</span>

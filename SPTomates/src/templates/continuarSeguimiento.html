@@ -1,6 +1,116 @@
 {% extends 'indexSesion.html' %}
 {% block contenido %}
+<div class="modal fade show" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Instrucciones</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <div id="carouselExample" class="carousel slide">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <div class="container text-center">
+                      <div class="row justify-content-between">
+                          <div class="form-floating mb-3">
+                              <textarea type="text" readonly class="form-control" style="height: 5rem;text-align: justify;" placeholder="name@example.com">En esta interfaz se ingresará la respectiva foto a analizar para poder determinar si tiene la plaga de la araña roja o no</textarea>
+                              <label for="floatingInput">Instrucción</label>
+                          </div>
+                          <div class="col-sm-3"></div>
+                          <div class="col-sm-6">
+                              
+                              <div class="row">
+                                  <img src="{{url_for('static',filename = 'images/predecir.jpg')}}" class="d-block" width="100%" height="auto" alt="...">
+                              </div>
+                                  
+                          </div>
+                          <div class="col-sm-3"></div>
+                      </div>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <div class="row justify-content-between">
+                      <div class="form-floating mb-3">
+                          <textarea type="text" readonly class="form-control" style="height: 10rem;text-align: justify;" placeholder="name@example.com">En esta interfaz se podrán ver los diferentes controles que se tienen para esta plaga (preventivos, biológicos y químicos) cada uno con sus respectivas dosis y la cantidad de días en las que será aplicado. Nota: Se debe leer lo descrito para saber cómo se aplicará el control</textarea>
+                          <label for="floatingInput">Instrucción</label>
+                      </div>
+                      <div class="col-sm-2"></div>
+                      <div class="col-sm-6">
+                          
+                          <div class="row">
+                              <img src="{{url_for('static',filename = 'images/trat1.jpg')}}" class="d-block" width="100%" height="auto" alt="...">
+                          </div>
+                      </div>
+                      <div class="col-sm-3"></div>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <div class="row justify-content-between">
+                      <div class="form-floating mb-3">
+                          <textarea type="text" readonly class="form-control" style="height: 6rem;text-align: justify;" placeholder="name@example.com">En esta parte debajo de cada control se ingresará la fecha en la que comenzará a aplicar el control al cultivo de tomate para así asignarle la fecha en la que volverá a subir una foto del tomate</textarea>
+                          <label for="floatingInput">Instrucción</label>
+                      </div>
+                      <div class="col-sm-3"></div>
+                          <div class="col-sm-6">
+                          
+                              
+                              <div class="row">  
+                              
+                                  <img src="{{url_for('static',filename = 'images/trat2.jpg')}}" class="d-block" width="100%" height="auto" alt="...">
+                              </div>
+                          </div>
+                      <div class="col-sm-3"></div>
+                      </div>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <div class="row justify-content-between">
+                      <div class="form-floating mb-3">
+                          <textarea type="text" readonly class="form-control" style="height: 5rem;text-align: justify;" placeholder="name@example.com">Para ver los datos del seguimiento que se le ha registrado del tomate y el respectivo control que se va a aplicar</textarea>
+                          <label for="floatingInput">Instrucción</label>
+                      </div>
+                      <div class="col-sm-3"></div>
+                      <div class="col-sm-6">          
+                          <div class="row">
+                          <img src="{{url_for('static',filename = 'images/models1.jpg')}}" class="d-block" width="100%" height="auto" alt="...">
+                          </div>
+                          
+                      </div>
+                      <div class="col-sm-3"></div>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <div class="row justify-content-between">
+                      <div class="form-floating mb-3">
+                          <textarea type="text" readonly class="form-control" style="height: 5rem;text-align: justify;" placeholder="name@example.com">En esta parte se podrá ver la próxima fecha del seguimiento para la aplicación del control y los datos del diagnóstico</textarea>
+                          <label for="floatingInput">Instrucción</label>
+                      </div>
+                      <div class="col-sm-3"></div>
+                      <div class="col-sm-6">
+                          <div class="row">
 
+                          
+                              <img src="{{url_for('static',filename = 'images/models2.jpg')}}" class="d-block" width="100%" height="auto" alt="...">
+                          </div>
+                      </div>
+                      <div class="col-sm-3"></div>
+                  </div>
+                </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon btn btn-dark" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon btn btn-dark" aria-hidden="true"></span>
+                <span class="visually-hidden">Siguiente</span>
+              </button>
+            </div>
+      </div>
+      
+    </div>
+  </div>
        
     <div class="container text-center">
         
@@ -62,14 +172,16 @@
       <div class="col-md-12">
         <div class="columns">
             <div class="column">
-                <h3 class="is-size-3">Tratamientos</h3>
+                <h3 class="is-size-3">Seguimientos</h3>
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
                             <tr>
                                 <th scope="col">ID Seguimiento</th>
                                 <th scope="col">ID Tomate</th>
-                                <th scope="col">Fecha Seguimiento</th>
+                                <th scope="col">Fecha Registro</th>
+                                <th scope="col">Fecha Inicio Seguimiento</th>
+                                <th scope="col">Fecha Fin Seguimiento</th>
                                 <th scope="col">Estado</th>
                                 <th scope="col">Detalle</th>
                             </tr>
@@ -78,10 +190,14 @@
                             <td scope="row">{{hojas_s[0]}}</td>
                             <td scope="row">{{hojas_s[1]}}</td>
                             <td scope="row">{{hojas_s[2]}}</td>
+                            <td scope="row">{{hojas_s[4]}}</td>
+                            <td scope="row">{{hojas_s[5]}}</td>
                             {% if hojas_s[3]=="S" %}
                                         <td scope="row">En Seguimiento</td>
                             {% elif hojas_s[3]=="T" %}
                                         <td scope="row">Terminado</td>
+                            {% elif hojas_s[3]=="N" %}
+                                        <td scope="row">No es un tomate</td>
                             {% endif %}
                             <td>
                                 <div class="grid text-center" style="--bs-columns: 3;">
@@ -108,4 +224,10 @@
     </div>
 </div>
 
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var myModal = new bootstrap.Modal(document.getElementById("exampleModal"));
+    myModal.show();
+  });
+</script>
 {% endblock %}

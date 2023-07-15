@@ -1,0 +1,75 @@
+{% extends 'indexAdmin.html' %}
+{% block contenido %}
+<form action="/actualizarUsuario3" method="post" id="actualizarUsuario2">
+<div class="container text-center">
+    
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <strong>{{ messages[0] }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        {% endif %}
+        {% endwith %}
+    
+    <!-- Columns are always 50% wide, on mobile and desktop -->
+    <div class="row justify-content-evenly" style="width: 100%;">
+        <h3 class="is-size-3">Editar usuario Administrador</h3>
+      <div class="col-sm-6">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <div class="form-floating mb-3">
+                <input type="text" name="id2" class="form-control" placeholder="name@example.com" value="{{current_user.id}}" readonly>
+                <label for="floatingInput">ID</label>
+                </div>
+                <div class="form-floating mb-3">
+                <input type="text" name="nombre2" class="form-control" placeholder="name@example.com" value="{{current_user.nom}}" required>
+                <label for="floatingInput">Nombres</label>
+                </div>
+                <div class="form-floating mb-3">
+                <input type="text" name="apel2" class="form-control" placeholder="name@example.com" value="{{current_user.ape}}" required>
+                <label for="floatingInput">Apellidos</label>
+                </div>
+
+                
+                
+        
+      </div>
+      <div class="col-sm-6">
+            <div class="form-floating mb-3">
+                <input type="text" name="cor2" class="form-control" placeholder="name@example.com" value="{{current_user.cor}}" required>
+                <label for="floatingInput">Correo</label>
+            </div>
+           
+             
+             <input type="hidden" name="conH2" value="{{current_user.con}}">
+             
+             <div class="form-floating mb-3">
+                <input type="password" name="contrasena2" class="form-control" placeholder="name@example.com" required>
+                <label for="floatingInput">Ingrese la contraseña actual</label>
+             </div>
+             <div class="form-floating mb-3">
+                <input type="password" name="contrasenaN2" class="form-control" placeholder="name@example.com" required>
+                <label for="floatingInput">Ingrese la nueva contraseña</label>
+             </div>
+        
+      </div>
+      <div class="row justify-content-evenly" style="width: 100%;">
+        <button type="submit" class="btn btn-primary" id="enviarActualizacionUsuario" style="width: 10rem;" disabled>Editar usuario</button>
+      </div>
+    </div>
+  </div>
+</form>
+
+
+<script>
+    const form = document.querySelector('#actualizarUsuario2');
+    const submitBtn = document.querySelector('#enviarActualizacionUsuario');
+    form.addEventListener('input', () => {
+    if (form.checkValidity()) {
+        submitBtn.disabled = false;
+    } else {
+        submitBtn.disabled = true;
+    }
+    });
+</script>
+{% endblock %}

@@ -12,135 +12,114 @@
         </div>
       </div>
       <br>
-  <!--
-    <div class="container my-2">
-        
-        <div class="row mb-5">
-
-            <div class="col-sm" style="margin-bottom: 23px;">
-                <span class="border border-primary">
-                    <img src="./static/images/{{ foto_base }}" alt="User Image" style="width:300px;height:300px;">
-                    
-                </span>
-            </div>
-            <div class="col-sm">
-                <span class="border border-primary">
-                    <img src="./static/upload/fotos/{{ foto }}" alt="User Image" style="width:300px;height:300px;">
-                </span>
-            </div>
-            <div class="col-sm">
-                <span class="border border-primary">
-                    <img src="./static/upload/umbrales/{{ umbral }}" alt="User Image" style="width:300px;height:300px;">
-                </span>
-            </div>
-        </div>
-
+      <div class="container text-center">
         <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <div>
-                    <h1>Nombre de la enfermedad</h1>
-                    <h1 style="padding: 15px; background-color: rgb(15, 15, 15); color: white;"
-                        class="text-center mb-5 content-h1 rounded">
-                        {{pred_output}} </h1>
-                </div>
-                <div>
-                    <h1>Porcentaje de Fiabilidad en el resultado</h1>
-                    <h1 style="padding: 15px; background-color: rgb(15, 15, 15); color: white;"
-                        class="text-center mb-5 content-h1 rounded">
-                        {{porc}} %</h1>
-                </div>
-                <div>
-                    <h1>Cantidad en px de la enfermedad en la foto</h1>
-                    <h1 style="padding: 15px; background-color: rgb(15, 15, 15); color: white;"
-                        class="text-center mb-5 content-h1 rounded">
-                        {{enfermedad}} </h1>
-                </div>
-                <div>
-                    <h1>Porcentaje de la Enfermedad en la foto</h1>
-                    <h1 style="padding: 15px; background-color: rgb(15, 15, 15); color: white;"
-                        class="text-center mb-5 content-h1 rounded">
-                        {{porcen_enfer}} %</h1>
-                </div>
-                <div>
-                    <h1>Nivel de la enfermedad</h1>
-                    <h1 style="padding: 15px; background-color: rgb(15, 15, 15); color: white;"
-                        class="text-center mb-5 content-h1 rounded">
-                        {{nivel}} </h1>
-                </div>
+          <div class="col">
+           
+          </div>
+          <div class="col-10">
+              <div class="columns">
+                       
+                  <div class="column">
+                      <h3 class="is-size-3">Controles</h3>
+                                  {% for trats, foto_base64 in trat %}
+                                          <div class="accordion col-sm-12" id="accordionFlushExample">
+                                              <div class="accordion-item">
+                                                  <h2 class="accordion-header" id="flush-heading{{trats[0]}}">
+                                                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{trats[0]}}" aria-expanded="false" aria-controls="flush-collapse{{trats[0]}}">
+                                                      {{trats[1]}}
+                                                      </button>
+                                                  </h2>
+                                                  <div id="flush-collapse{{trats[0]}}" class="accordion-collapse collapse" aria-labelledby="flush-heading{{trats[0]}}" data-bs-parent="#accordionFlushExample">
+                                                      
+                                                      <div class="accordion-body"> 
+                                                          <div class="container text-center">
+                                                              
+                                                              <div class="row">
+                                                                <div class="col-sm">
+                                                                  <h4 style="text-align: justify;">Dosis recomendadas</h4>
+                                                                      {% set partes = trats[3].split('+') %}
+                                                                      <ul style="text-align: justify;">
+                                                                      {% for parte in partes %}
+                                                                          <li type="square">{{ parte }}</li>
+                                                                      {% endfor %}
+                                                                      </ul>
+                                                                  <br>
+                                                                  <h4 style="text-align: justify;">Cantidad de días hasta el siguiente seguimiento si se aplica desde hoy</h4>
+                                                                  <p style="text-align: justify;">{{trats[4]}}</p>
+                                                                  <br>
+                                                                  <h4 style="text-align: justify;">Descripción y forma de aplicación del control</h4>
+                                                                  <p style="text-align: justify;">{{trats[7]}}</p>
+                                                                  
+                                                                </div>
+                                                                  
+                                                                
+                                                                <div class="col-sm">
+                                                                  <img src="data:image/jpeg;base64,{{ foto_base64 }}" width="100%"/><br><br>
+                                                                </div>
+                                                                {% if trats[0]==19 %}         
+                                                        <form action="/regisSegui" id="regisSegui" method="POST">
+                                                          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                                          <input type="hidden" name="id" value="{{trats[0]}}">
+                                                          <input type="hidden" name="id_hoja" value="{{id_hoja}}">
+                                                          <input type="hidden" name="diagnostico" value="{{pred_output}}">
+                                                          <input type="hidden" name="porcen_fia" value="{{porc}}">
+                                                          <input type="hidden" name="imagen_hoja" value="{{user_image}}">
+                                                          <!--<input type="submit" class="btn btn-primary"  value="Seleccionar" disabled>-->
+                                                          <button type="submit" name="selControl" class="btn btn-primary">Seleccionar</button>
+                                                        </form>
+                                                      {% elif trats[0]==17 %}
+                                                        <form action="/regisSegui" id="regisSegui" method="POST">
+                                                          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                                          <input type="hidden" name="id" value="{{trats[0]}}">
+                                                          <input type="hidden" name="id_hoja" value="{{id_hoja}}">
+                                                          <input type="hidden" name="diagnostico" value="{{pred_output}}">
+                                                          <input type="hidden" name="porcen_fia" value="{{porc}}">
+                                                          <input type="hidden" name="imagen_hoja" value="{{user_image}}">
+                                                          <!--<input type="submit" class="btn btn-primary"  value="Seleccionar" disabled>-->
+                                                          <button type="submit" name="selControl" class="btn btn-primary">Seleccionar</button>
+                                                        </form>
+                                                      {% else %}
+                                                      <form action="/regisSegui" id="regisSegui" method="POST">
+                                                        <div class="row">
+                                                          <div class="col-sm-6">
+                                                            <div class="form-floating mb-3">
+                                                              <input type="date" name="fechaI1" class="form-control" placeholder="name@example.com" required>
+                                                              <label for="floatingInput">Fecha aplicación del control</label>
+                                                            </div>
+                                                          </div>
+                                                        </div>
+                                                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                                        <input type="hidden" name="id" value="{{trats[0]}}">
+                                                        <input type="hidden" name="id_hoja" value="{{id_hoja}}">
+                                                        <input type="hidden" name="diagnostico" value="{{pred_output}}">
+                                                        <input type="hidden" name="porcen_fia" value="{{porc}}">
+                                                        <input type="hidden" name="imagen_hoja" value="{{user_image}}">
+                                                        <!--<input type="submit" class="btn btn-primary"  value="Seleccionar" disabled>-->
+                                                        <button type="submit" name="selControl" class="btn btn-primary">Seleccionar</button>
+                                                      </form>
+                                                      
+                                                      {% endif %}
 
-            </div>
-        </div>
--->
-<div class="container text-center">
-  <div class="row">
-    <div class="col">
-     
-    </div>
-    <div class="col-10">
-        <div class="columns">
-            {% if trat %}
-            <div class="column">
-                <h3 class="is-size-3">Tratamientos</h3>
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Modo de Acción</th>
-                                <th scope="col">Dosis</th>
-                                <th scope="col">Cantidad de Días</th>
-                                <th scope="col">Seleccionar Tratamiento</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            
-                            {% for trats in trat %}
-                            <tr>
-                                <td scope="row">{{trats[1]}}</td>
-                                {% if trats[2]=="S" %}
-                                    <td scope="row">Sistemático</td>
-                                {% elif trats[2]=="P" %}
-                                    <td scope="row">Preventivo</td>
-                                {% elif trats[2]=="C" %}
-                                    <td scope="row">Curativo</td>
-                                {% elif trats[2]=="N" %}
-                                    <td scope="row">Ninguno</td>
-                                {% elif trats[2]=="Q" %}
-                                    <td scope="row">Químico</td>
-                                {% elif trats[2]=="B" %}
-                                    <td scope="row">Biológico</td>
-                                {% endif %}
-                                
-                                <td scope="row">{{trats[3]}}</td>
-                                <td scope="row">{{trats[4]}}</td>
-                                <td>
-                                    <form action="/regisSegui2" method="POST">
-                                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                                        <input type="hidden" name="id" value="{{trats[0]}}">
-                                        <input type="hidden" name="id_hoja" value="{{id_hoja}}">
-                                        <input type="hidden" name="diagnostico" value="{{pred_output}}">
-                                        <input type="hidden" name="porcen_fia" value="{{porc}}">
-                                        <input type="hidden" name="imagen_hoja" value="{{user_image}}">
-                                        <input type="submit" value="Seleccionar">
-                                    </form>
-                                </td>
-                            </tr>
-                            {% endfor %}
-                            
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+                                                                  
+                                                              </div>
+                                                            </div>
+                                                          
+                                                            
+                                                      </div>
+                                                      
+                                                  </div>
+                                              </div>
+                                          </div> 
+                                  {% endfor %}
+                  </div>
+              </div>
+          </div>
+          <div class="col">
             
-            {% endif %}
+          </div>
         </div>
-    </div>
-    <div class="col">
-      
-    </div>
-  </div>
-</div>
+      </div>
 
 </section>
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -190,6 +169,10 @@
                                 <div class="form-floating mb-3">
                                     <input value="{{porc}} %" type="text"  readonly class="form-control" id="floatingInput" placeholder="name@example.com">
                                     <label for="floatingInput">Porcentaje de Fiabilidad en el resultado</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                  <textarea type="text" readonly class="form-control" style="height: 10rem;text-align: justify;" placeholder="name@example.com">{{datos_plaga[2]}}</textarea>
+                                  <label for="floatingInput">Descripción de lo encontrado en el tomate</label>
                                 </div>
 
                                 

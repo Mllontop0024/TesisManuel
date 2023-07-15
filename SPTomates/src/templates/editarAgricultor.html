@@ -1,46 +1,72 @@
 {% extends 'indexAdmin.html' %}
 {% block contenido %}
+<form action="/actualizarUsuario" method="post" id="actualizarAgricultor">
+    <div class="container text-center">
+    
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <strong>{{ messages[0] }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        {% endif %}
+        {% endwith %}
+        <div class="row justify-content-evenly" style="width: 100%;">
+            <h3 class="is-size-3">Editar usuario agricultor</h3>
+            <div class="col-sm-6">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">          
+                    <div class="form-floating mb-3">
+                        <input type="text" name="id" class="form-control" placeholder="name@example.com" value="{{datos_u[0]}}" readonly>
+                        <label for="floatingInput">ID</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" name="nombre" class="form-control" placeholder="name@example.com" value="{{datos_u[1]}}" required>
+                        <label for="floatingInput">Nombres</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" name="apel" class="form-control" placeholder="name@example.com" value="{{datos_u[2]}}" required>
+                        <label for="floatingInput">Apellidos</label>
+                    </div>
 
-<div class="row justify-content-evenly" style="width: 100%;">
-    <div class="col-7">
-        <h3 class="is-size-3">Editar Usuario</h3>
-        <form action="/actualizarUsuario" method="post">
-            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">          
-            <div class="form-floating mb-3">
-                <input type="text" name="id" class="form-control" placeholder="name@example.com" value="{{datos_u[0]}}" readonly>
-                <label for="floatingInput">ID</label>
+                    <div class="form-floating mb-3">
+                        <input type="text" name="cor" class="form-control" placeholder="name@example.com" value="{{datos_u[3]}}" required>
+                        <label for="floatingInput">Correo</label>
+                    </div>
             </div>
-            <div class="form-floating mb-3">
-                <input type="text" name="nombre" class="form-control" placeholder="name@example.com" value="{{datos_u[1]}}" required>
-                <label for="floatingInput">Nombres</label>
-            </div>
-            <div class="form-floating mb-3">
-                <input type="text" name="apel" class="form-control" placeholder="name@example.com" value="{{datos_u[2]}}" required>
-                <label for="floatingInput">Apellidos</label>
-            </div>
-
-            <div class="form-floating mb-3">
-                <input type="text" name="cor" class="form-control" placeholder="name@example.com" value="{{datos_u[3]}}" required>
-                <label for="floatingInput">Correo</label>
-            </div>
-            <div class="form-floating mb-3">
-                <input type="text" name="campo" class="form-control" placeholder="name@example.com" value="{{datos_u[4]}}" required>
-                <label for="floatingInput">Nombre de Campo</label>
-            </div>
-            
-            <input type="hidden" name="conH" value="{{datos_u[5]}}">
-                
-            
-            <div class="form-floating mb-3">
-                <input type="text" name="contrasena" class="form-control" placeholder="name@example.com" required>
-                <label for="floatingInput">Ingrese la contraseña actual</label>
-            </div>
-            <div class="form-floating mb-3">
-                <input type="text" name="contrasenaN" class="form-control" placeholder="name@example.com" required>
-                <label for="floatingInput">Ingrese la nueva contraseña</label>
-            </div>
-            <button type="submit" class="btn btn-primary">Editar Usuario</button>
-        </form>
-    </div> 
- </div>
+                <div class="col-sm-6">
+                    <div class="form-floating mb-3">
+                        <input type="text" name="campo" class="form-control" placeholder="name@example.com" value="{{datos_u[5]}}" required>
+                        <label for="floatingInput">Nombre de Campo</label>
+                    </div>
+                    
+                    <input type="hidden" name="conH" value="{{datos_u[6]}}">
+                        
+                    
+                    <div class="form-floating mb-3">
+                        <input type="password" name="contrasena" class="form-control" placeholder="name@example.com" required>
+                        <label for="floatingInput">Ingrese la contraseña actual</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="password" name="contrasenaN" class="form-control" placeholder="name@example.com" required>
+                        <label for="floatingInput">Ingrese la nueva contraseña</label>
+                    </div>
+                </div>
+                <div class="row justify-content-evenly" style="width: 12rem;">
+                    <button type="submit" id="enviarActualizacionUsuario" class="btn btn-primary" disabled>Editar usuario</button>
+                </div>
+            </div> 
+        </div>
+    </div>
+ </form>
+ <script>
+    const form = document.querySelector('#actualizarAgricultor');
+    const submitBtn = document.querySelector('#enviarActualizacionUsuario');
+    form.addEventListener('input', () => {
+    if (form.checkValidity()) {
+        submitBtn.disabled = false;
+    } else {
+        submitBtn.disabled = true;
+    }
+    });
+</script>
 {% endblock %}

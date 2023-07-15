@@ -8,10 +8,9 @@ class Modelplaga():
     def listarPlaga(self,db,plaga):
         try:
             cursor=db.connection.cursor()
-            sql="""SELECT * FROM plaga WHERE id_plaga={}""".format(plaga.id)
+            sql="""SELECT id_plaga,nombre_plaga,descripcion FROM plaga WHERE id_plaga={}""".format(plaga.id)
             cursor.execute(sql)
-            datos=cursor.fetchall()
-
+            datos=cursor.fetchone()
             if datos:
                 return datos
             else:

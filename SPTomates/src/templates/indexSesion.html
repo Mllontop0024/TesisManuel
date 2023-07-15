@@ -36,60 +36,6 @@
     <!-- end loader -->
     <!-- header -->
     <header>
-      <!--
-       <div class="header_midil">
-             <div class="container">
-                <div class="row d_flex">
-                   <div class="col-md-4">
-                      
-                   </div>
-                   <div class="col-md-9">
-                      <ul class="conta_icon d_none1">
-                         <h5> <span class="blodark">SISTEMA EXPERTO PARA LAS ENFERMEDADES DEL TOMATE EN LAMBAYEQUE</span></h5>
-                      </ul>
-                   </div>
-                   
-                </div>
-             </div>
-      </div>
-          <div class="header_bottom">
-             <div class="container">
-                <div class="row">
-                   <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
-                     <ul class="conta_icon">
-                        <li><p></p></li>
-                        <li><p style="color: #FFFFFF"><b>Usuario: </b> {{current_user.cor}}</p></li>
-                     </ul>
-                   </div>
-                   <div class="col-md-4">
-                      <nav class="navigation navbar navbar-expand-md navbar-dark ">
-                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
-                         <span class="navbar-toggler-icon"></span>
-                         </button>
-                        
-                          
-                         <div class="collapse navbar-collapse" id="navbarsExample04">
-                            <ul class="navbar-nav mr-auto">
-                               <li class="nav-item">
-                                  <a class="nav-link" href="/sesion">Inicio</a>
-                               </li>
-                               <li class="nav-item">
-                                  <a class="nav-link" href="contact.html">Tomate</a>
-                               </li>
-                               <li class="nav-item">
-                                  <a class="nav-link" href="/prueba2/{{current_user.id}}">Probar</a>
-                               </li>
-                               <li class="nav-item">
-                                 <a class="nav-link" href="{{ url_for('logout') }}">Cerrar Sesión</a>
-                              </li>
-                            </ul>
-                         </div>
-                      </nav>
-                   </div>
-                </div>
-             </div>
-          </div>
-         -->
          <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
             <div class="container-fluid">
               <a class="navbar-brand text-white" href="">SP TOMATES</a>
@@ -98,7 +44,6 @@
               </button>
               <div class="navbar-collapse collapse" id="navbarColor01">
                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          
                </ul> 
                <form class="d-flex" role="search">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -115,10 +60,13 @@
                      <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         {{current_user.cor}}
                      </a>
+                     
                      <ul class="dropdown-menu">
+                       <li><a class="dropdown-item" href="/editarUsuario2">Editar usuario</a></li>
                        <li><a class="dropdown-item" href="{{ url_for('logout') }}">Cerrar Sesión</a></li>
                      </ul>
                    </li>
+                   
                 </ul>
                 
                   
@@ -132,6 +80,19 @@
     <section class="banner_main">
       <div class="container">
          <div class="row">
+            {% with messages=get_flashed_messages() %}
+
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-primary alert-dismissible" role="alert">
+              <strong>{{message}}</strong>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+    
+            {% endif%}
+    
+        {% endwith %}
           <div class="col-md-1"></div>
           <div class="col-md-10">
              <span class="blodark">SISTEMA PREDICTIVO PARA LA DETECCIÓN Y CONTROL DE LA ARAÑA ROJA DEL TOMATE EN LAMBAYEQUE</span>

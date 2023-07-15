@@ -1,5 +1,18 @@
 {% extends 'indexAdmin.html' %}
 {% block contenido %}
+{% with messages=get_flashed_messages() %}
+
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-primary alert-dismissible" role="alert">
+              <strong>{{message}}</strong>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+    
+            {% endif%}
+    
+        {% endwith %}
 <section class="banner_main">
     <!-- Button trigger modal -->
     <br>
@@ -44,10 +57,10 @@
                                 <td scope="row">{{dats[2]}}</td>
                                 <td scope="row">{{dats[3]}}</td>
                                     <td scope="row">
-                                        <a class="botones" href="/editarUsuario/{{dats[0]}}">Editar</a>
+                                        <a class="botones btn btn-warning" href="/editarUsuario/{{dats[0]}}">Editar</a>
                                     </td>
                                     <td scope="row">
-                                        <a class="botones" href="/eliminarUsuario/{{dats[0]}}">Eliminar</a>
+                                        <a class="botones btn btn-danger" href="/eliminarUsuario/{{dats[0]}}">Eliminar</a>
                                     </td>
                                 
                             </tr>

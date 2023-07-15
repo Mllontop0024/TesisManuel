@@ -10,14 +10,16 @@
       <div class="col-md-12">
         <div class="columns">
             <div class="column">
-                <h3 class="is-size-3">Tratamientos</h3>
+                <h3 class="is-size-3">Seguimientos</h3>
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
                             <tr>
                                 <th scope="col">ID Seguimiento</th>
                                 <th scope="col">ID hoja</th>
-                                <th scope="col">Fecha Seguimiento</th>
+                                <th scope="col">Fecha Registro</th>
+                                <th scope="col">Fecha Inicio Seguimiento</th>
+                                <th scope="col">Fecha Fin Seguimiento</th>
                                 <th scope="col">Estado</th>
                                 <th scope="col">Detalle</th>
                             </tr>
@@ -26,10 +28,20 @@
                             <td scope="row">{{hojas_s[0]}}</td>
                             <td scope="row">{{hojas_s[1]}}</td>
                             <td scope="row">{{hojas_s[2]}}</td>
+                            {% if hojas_s[4]==None %}
+                                <td scope="row">---</td>
+                                <td scope="row">---</td>
+                            {% else %}
+                                <td scope="row">{{hojas_s[4]}}</td>
+                                <td scope="row">{{hojas_s[5]}}</td>
+                            {% endif %}
+                            
                             {% if hojas_s[3]=="S" %}
                                         <td scope="row">En Seguimiento</td>
                             {% elif hojas_s[3]=="T" %}
                                         <td scope="row">Terminado</td>
+                            {% elif hojas_s[3]=="N" %}
+                                        <td scope="row">No es un tomate</td>
                             {% endif %}
 
                             <td>

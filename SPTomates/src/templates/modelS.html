@@ -13,8 +13,9 @@
         {% endif%}
 
     {% endwith %}
-
+<br>
     <div class="container text-center mb-3">
+        
         <div class="row">
         
             <div class="col-md-4 mb-3">
@@ -27,53 +28,128 @@
                     </div>
                 </div>
             </div>
-        <div class="col-md-4 mb-3 container text-center">
-            
-            <div class="form-floating mb-3">
-                <input value="{{datos[2]}}" readonly type="text" class="form-control">
-                <label for="floatingInput">Diagnóstico</label>
-            </div>
-            <div class="form-floating mb-3">
-                <input value="{{datos[3]}}" type="text"  readonly class="form-control" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput">Porcentaje de Fiabilidad en el resultado</label>
-            </div>
-            <div class="form-floating mb-3">
-                <input value="{{datos[4]}}" type="text"  readonly class="form-control" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput">Fecha de Inicio de Tratamiento</label>
+            <div class="col-md-8 mb-3 container text-center">
+                <div class="accordion col-sm-12" id="accordionFlushExample">
+                
+                    <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                        Datos del control
+                        </button>
+                    </h2>
+                    <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body"> 
+                            <div class="form-floating mb-3">
+                                <input value="{{datos[7]}}" type="text"  readonly class="form-control" id="floatingInput" placeholder="name@example.com">
+                                <label for="floatingInput">Nombre del Control o tratamiento</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <textarea type="text" readonly class="form-control" style="height: 12rem;text-align: justify;" placeholder="name@example.com">{{datos_control[7]}}</textarea>
+                                <label for="floatingInput">Descripción del control recomendado</label>
+                            </div>
+                            {% if datos_control[2]=="N" %}
+                                <div class="form-floating mb-3">
+                                    <input value="Ninguno" type="text"  readonly class="form-control" id="floatingInput" placeholder="name@example.com">
+                                    <label for="floatingInput">Tipo de control recomendado</label>
+                                </div>
+                            {% elif datos_control[2]=="Q" %}
+                                <div class="form-floating mb-3">
+                                    <input value="Químico" type="text"  readonly class="form-control" id="floatingInput" placeholder="name@example.com">
+                                    <label for="floatingInput">Tipo de control recomendado</label>
+                                </div>
+                            {% elif datos_control[2]=="P" %}
+                                <div class="form-floating mb-3">
+                                    <input value="Preventivo" type="text"  readonly class="form-control" id="floatingInput" placeholder="name@example.com">
+                                    <label for="floatingInput">Tipo de control recomendado</label>
+                                </div>
+                            {% endif%}
+                            
+                            <div class="form-floating mb-3">
+                                {% set partes = datos[9].split('+') %}
+                                
+                                <textarea type="text" readonly class="form-control" style="height: 100%;" placeholder="name@example.com">{% for parte in partes %}{{ parte }}{% endfor %}
+                                </textarea>
+                                <label for="floatingInput">Dosis</label>
+                                
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <input value="{{datos[10]}}" type="text"  readonly class="form-control" id="floatingInput" placeholder="name@example.com">
+                                <label for="floatingInput">Cantidad de días recomendados del control</label>
+                            </div>
+                            
+                        </div> 
+                    </div>
+                    </div>
+                    <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                        Datos del Diagnóstico
+                        </button>
+                    </h2>
+                    <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body"> 
+                            <div class="form-floating mb-3">
+                                <input value="{{datos[2]}}" readonly type="text" class="form-control">
+                                <label for="floatingInput">Diagnóstico</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <textarea type="text" readonly class="form-control" style="height: 10rem;text-align: justify;" placeholder="name@example.com">{{datos_plaga[2]}}</textarea>
+                                <label for="floatingInput">Descripción de lo encontrado en el tomate</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input value="{{datos[3]}} %" type="text"  readonly class="form-control" id="floatingInput" placeholder="name@example.com">
+                                <label for="floatingInput">Porcentaje de Fiabilidad en el resultado</label>
+                            </div>
+                            {% if datos[5]==None %}
+                                <div class="form-floating mb-3">
+                                    <input value="No hay" type="text"  readonly class="form-control" id="floatingInput" placeholder="name@example.com">
+                                    <label for="floatingInput">Fecha de Inicio del Control</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input value="No hay" type="text"  readonly class="form-control" id="floatingInput" placeholder="name@example.com">
+                                    <label for="floatingInput">Fecha de Fin del Control</label>
+                                </div>
+                            {% else %}
+                                <div class="form-floating mb-3">
+                                    <input value="{{datos[5]}}" type="text"  readonly class="form-control" id="floatingInput" placeholder="name@example.com">
+                                    <label for="floatingInput">Fecha de Inicio del Control</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input value="{{datos[6]}}" type="text"  readonly class="form-control" id="floatingInput" placeholder="name@example.com">
+                                    <label for="floatingInput">Fecha de Fin del Control</label>
+                                </div>
+                            {% endif %}
+
+
+                            
+                            {% if datos[11]=="S" %}         
+                                <div class="form-floating mb-3">
+                                    <input value="En Seguimiento" type="text"  readonly class="form-control" id="floatingInput" placeholder="name@example.com">
+                                    <label for="floatingInput">Estado del Tratamiento en este diagnóstico</label>
+                                </div>
+                            {% elif datos[11]=="T" %}
+                                <div class="form-floating mb-3">
+                                    <input value="Terminado" type="text"  readonly class="form-control" id="floatingInput" placeholder="name@example.com">
+                                    <label for="floatingInput">Estado del Tratamiento en este diagnóstico</label>
+                                </div>
+                            {% elif datos[11]=="N" %}
+                                <div class="form-floating mb-3">
+                                    <input value="No es Tomate" type="text"  readonly class="form-control" id="floatingInput" placeholder="name@example.com">
+                                    <label for="floatingInput">Estado del Tratamiento en este diagnóstico</label>
+                                </div>
+                            {% endif %}
+                        
+                        </div> 
+                        
+                    </div>
+                    </div>
+                </div>
                 
             </div>
-            <div class="form-floating mb-3">
-                <input value="{{datos[5]}}" type="text"  readonly class="form-control" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput">Fecha de Fin de Tratamiento</label>
-            </div>
-            <div class="form-floating mb-3">
-                <input value="{{datos[6]}}" type="text"  readonly class="form-control" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput">Nombre del Control o tratamiento</label>
-            </div>
-            
-        
-        </div>
 
 
-        <div class="col-md-4 mb-3 container text-center">
-            <div class="form-floating mb-3">
-                <input value="{{datos[7]}}" type="text"  readonly class="form-control" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput">Modo de Acción</label>
-            </div>
-            <div class="form-floating mb-3">
-                <input value="{{datos[8]}}" type="text"  readonly class="form-control" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput">Dosis</label>
-            </div>
-            <div class="form-floating mb-3">
-                <input value="{{datos[9]}}" type="text"  readonly class="form-control" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput">Cantidad de Días del control o tratamiento</label>
-            </div>
-            <div class="form-floating mb-3">
-                <input value="{{datos[11]}}" type="text"  readonly class="form-control" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput">Estado del Tratamiento en este diagnóstico</label>
-            </div>
-            
-        </div>
+
 
         </div>
         <div class="form-floating mb-3">
