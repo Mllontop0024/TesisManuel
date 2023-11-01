@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SP Tomates</title>
+    <!-- basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1" />
+    <!-- site metas -->
+    <title>Sistema Predictivo Tomates</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <!-- bootstrap css -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- style css -->
+    <link
+      rel="stylesheet"
+      href="{{url_for('static',filename = 'css/style.css')}}"
+    />
+  </head>
+  <body class="main-layout">
+    <!-- loader  -->
+    <div class="loader_bg">
+      <div class="loader">
+        <img
+          src="{{url_for('static',filename = 'images/loading.gif')}}"
+          alt="#"
+        />
+      </div>
+    </div>
+    <!-- end loader -->
+    <!-- header -->
+    <header>
+      <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+        <div class="container-fluid">
+          <a class="navbar-brand text-white" href="">SP TOMATES</a>
+          <button
+            class="navbar-toggler collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarColor01"
+            aria-controls="navbarColor01"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="navbar-collapse collapse" id="navbarColor01">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+            <form class="d-flex" role="search">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a
+                    class="nav-link text-white"
+                    href="/prueba2/{{current_user.id}}"
+                    >Diagnosticar</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-white" href="">Inicio</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-white" href="/sabermas2">Saber Más</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a
+                    class="nav-link dropdown-toggle text-white"
+                    href="#"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    {{current_user.cor}}
+                  </a>
+
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a class="dropdown-item" href="/editarUsuario2"
+                        >Editar usuario</a
+                      >
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="{{ url_for('logout') }}"
+                        >Cerrar Sesión</a
+                      >
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </form>
+          </div>
+        </div>
+      </nav>
+    </header>
+    {% block contenido %}
+    <section class="banner_main">
+      <div class="container">
+        <div class="row">
+          {% with messages=get_flashed_messages() %} {% if messages %} {% for
+          message in messages %}
+          <div class="alert alert-primary alert-dismissible" role="alert">
+            <strong>{{message}}</strong>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="alert"
+              aria-label="Close"
+            ></button>
+          </div>
+          {% endfor %} {% endif%} {% endwith %}
+          <div class="col-md-1"></div>
+          <div class="col-md-10">
+            <span class="blodark"
+              >SISTEMA PREDICTIVO PARA LA DETECCIÓN Y CONTROL DE LA ARAÑA ROJA
+              DEL TOMATE EN LAMBAYEQUE</span
+            >
+          </div>
+          <div class="mvqs">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-5">
+                  <div class="card-m shadow">
+                    <h1>Descripción de lo que hacemos</h1>
+                    <p>
+                      Mediante el uso de una de las técnicas de Inteligencia
+                      Artificial, llamada Redes Neuronales Convolucionales para
+                      que através de imágenes de tomate se detecte la plaga de
+                      la araña roja y así poder brindarle un control adecuado
+                    </p>
+                    <br />
+                    <a class="read_more" href="/sabermas2">Saber Más</a>
+                  </div>
+                </div>
+                <div class="col-sm-7">
+                  <div
+                    id="carouselExampleSlidesOnly"
+                    class="fotosTrabajo carousel slide"
+                    data-bs-ride="carousel"
+                  >
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                        <img
+                          src="{{url_for('static',filename = 'images/fondo4.jpg')}}"
+                          class="d-block"
+                          width="100%"
+                          height="auto"
+                          alt="..."
+                        />
+                      </div>
+                      <div class="carousel-item">
+                        <img
+                          src="{{url_for('static',filename = 'images/fondo5.jpg')}}"
+                          class="d-block"
+                          width="100%"
+                          height="auto"
+                          alt="..."
+                        />
+                      </div>
+                      <div class="carousel-item">
+                        <img
+                          src="{{url_for('static',filename = 'images/fondo3.jpg')}}"
+                          class="d-block"
+                          width="100%"
+                          height="auto"
+                          alt="..."
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    {% endblock %}
+    <!-- end header inner -->
+    <!-- end header -->
+    <!-- banner -->
+
+    <!--  footer -->
+    <footer>
+      <div class="container">
+        <div class="copyright">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <p>
+                  Manuel Alejandro Llontop Soplapuco| @2023 Todos los derechos
+                  reservados
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- end footer -->
+    <!-- Javascript files-->
+    <script src="{{url_for('static',filename = 'js/jquery.min.js')}}"></script>
+
+    <!-- sidebar -->
+
+    <script src="{{url_for('static',filename = 'js/custom.js')}}"></script>
+  </body>
+</html>
